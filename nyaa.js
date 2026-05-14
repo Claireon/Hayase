@@ -5,7 +5,7 @@ export default new class Nyaa {
   async single({ titles, episode, fetch = globalThis.fetch }) {
     if (!titles?.length) return []
     const clean = titles[0].replace(/[^\w\s-]/g, ' ').trim()
-    const ep = episode ? episode.toString().padStart(2, '0') : ''
+    const ep = episode ? episode.toString().padStart(2, '0')
     const q = [clean, ep].filter(Boolean).join(' ')
     return this.fetchRSS(q, fetch)
   }
