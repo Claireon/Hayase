@@ -32,11 +32,11 @@ export default new class Nyaa {
       const s = m[1]
       const title = s.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1]
         ?? s.match(/<title>(.*?)<\/title>/)?.[1]
-      if (!title) continue
+      //if (!title) continue
 
       const viewId = s.match(/<guid[^>]*>https:\/\/nyaa\.si\/view\/(\d+)<\/guid>/)?.[1]
       const hash = (s.match(/<nyaa:infoHash>(.*?)<\/nyaa:infoHash>/)?.[1] ?? '').toLowerCase()
-      if (!hash) continue
+      //if (!hash) continue
 
       const pubDate = s.match(/<pubDate>(.*?)<\/pubDate>/)?.[1]
 
