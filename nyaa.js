@@ -1,17 +1,17 @@
-export default new class Nyaa {
+/*export default new class Nyaa {
   base = atob('aHR0cHM6Ly9ueWFhLnNpLz9wYWdlPXJzcyZjPTFfMCZmPTAmcT0=')
 
   /** @type {import('./').SearchFunction} */
-  async single({ titles, episode, fetch = globalThis.fetch }) {
+/*  async single({ titles, episode, fetch = globalThis.fetch }) {
     if (!titles?.length) return []
     const clean = titles[0].replace(/[^\w\s-]/g, ' ').trim()
     const ep = episode ? episode.toString().padStart(2, '0') : ''
     const q = [clean, ep].filter(Boolean).join(' ')
     return this.fetchRSS(q, fetch)
   }
-
+*/
   /** @type {import('./').SearchFunction} */
-  batch = this.single
+/*  batch = this.single
   movie = this.single
 
   async fetchRSS(query, fetch) {
@@ -71,5 +71,45 @@ export default new class Nyaa {
     const res = await fetch(this.base + 'one+piece')
     if (!res.ok) throw new Error('Nyaa returned ' + res.status + ' — service may be down')
     return true
+  }
+}()
+*/
+
+export default new class Nyaa {
+  base = 'https://torrent-search-api-livid.vercel.app/api/nyaasi/'
+
+  async single({ titles, episode }) {
+    if (!titles?.length) return []
+    return this.search(titles[0], episode)
+  }
+
+  batch = this.single
+  movie = this.single
+
+  async search(title, episode) {
+    let query = title.replace(/[^\w\s-]/g, ' ').trim()
+    if (episode) query += ` ${episode.toString().padStart(2, '0')}`
+
+    const res = await fetch(this.base + encodeURIComponent(query))
+    const data = await res.json()
+    if (!Array.isArray(data)) return []
+
+    return data.map(item => ({
+      title: item.Name,
+      link: item.Magnet,
+      hash: item.Magnet?.match(/btih:([A-Fa-f0-9]+)/)?.[1] || '',
+      seeders: Number(item.Seeders || 0),
+      leechers: Number(item.Leechers || 0),
+      downloads: Number(item.Downloads || 0),
+      size: 0,
+      date: new Date(item.DateUploaded),
+      accuracy: 'medium',
+      type: 'alt'
+    }))
+  }
+
+  async test() {
+    const res = await fetch(this.base + 'one%20piece')
+    return res.ok
   }
 }()
