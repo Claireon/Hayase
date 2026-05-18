@@ -1,6 +1,6 @@
 export default new class Nyaa {
-  base = atob('aHR0cHM6Ly9ueWFhLnNpLz9wYWdlPXJzcyZjPTFfMCZmPTAmcT0=')
-  
+  //base = atob('aHR0cHM6Ly9ueWFhLnNpLz9wYWdlPXJzcyZjPTFfMCZmPTAmcT0=')
+  base = 'https://torrent-search-api-livid.vercel.app/api/nyaasi/'
   async single({ titles, episode }) {
     if (!titles?.length) return []
     return this.search(titles[0], episode)
