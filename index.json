@@ -11,8 +11,8 @@
     "languages": ["all"],
     "url": "aHR0cHM6Ly9ueWFhLnNp",
     "icon": "https://nyaa.si/static/favicon.png",
-    "update": "https://raw.githubusercontent.com/Claireon/Hayase/main/index.json",
-    "code": "https://raw.githubusercontent.com/Claireon/Hayase/main/nyaa.js"
+    "update": "https://raw.githubusercontent.com/LetMeGetAByte/Hayase-Extensions/main/index.json",
+    "code": "https://raw.githubusercontent.com/LetMeGetAByte/Hayase-Extensions/main/nyaa.js"
   },
   {
     "manifestVersion": 2,
