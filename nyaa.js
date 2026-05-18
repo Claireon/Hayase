@@ -1,6 +1,6 @@
 /*export default new class Nyaa {
   base = atob('aHR0cHM6Ly9ueWFhLnNpLz9wYWdlPXJzcyZjPTFfMCZmPTAmcT0=')
-
+*/
   /** @type {import('./').SearchFunction} */
 /*  async single({ titles, episode, fetch = globalThis.fetch }) {
     if (!titles?.length) return []
